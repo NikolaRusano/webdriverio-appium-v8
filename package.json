@@ -1,18 +1,27 @@
 {
   "name": "my-new-project",
   "devDependencies": {
+    "@babel/cli": "^7.22.6",
+    "@babel/core": "^7.22.8",
+    "@babel/preset-env": "^7.22.7",
+    "@babel/register": "^7.22.5",
     "@wdio/appium-service": "^8.11.2",
     "@wdio/cli": "^8.11.2",
     "@wdio/local-runner": "^8.11.2",
     "@wdio/mocha-framework": "^8.11.0",
     "@wdio/spec-reporter": "^8.11.2",
     "appium": "^2.0.0-rc.3",
-    "appium-uiautomator2-driver": "^2.28.1"
+    "appium-uiautomator2-driver": "^2.28.1",
+    "eslint": "^8.44.0",
+    "eslint-plugin-wdio": "^8.8.7"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "login": "npx playwright test ./test/specs/login.test.mjs"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@playwright/test": "^1.35.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   }
