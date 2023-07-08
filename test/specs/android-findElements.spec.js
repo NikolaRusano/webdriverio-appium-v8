@@ -17,12 +17,15 @@ describe("Android Elements Tests", () => {
 
 
   it.only('Find elements by Xpath', async () => {
+    // xpath - (//tagname[@attribute=value])
     await $('//android.widget.TextView[@content-desc="Alert Dialogs"]').click();
 
+    // find by resourceId
     await $(
       '//android.widget.Button[@resource-id="io.appium.android.apis:id/select_button"]'
     ).click();
 
+    // find by text
     await $('//android.widget.TextView[@text="Command two"]').click();
 
     const textAssertion = await $('//android.widget.TextView');
