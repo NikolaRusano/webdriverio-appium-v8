@@ -26,11 +26,12 @@ exports.config = {
     //
     specs: [
         // ToDo: define location for spec files here
-        './test/specs/**/*.js'
+        './test/specs/android/delete-note-screen*.js'
     ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
+    
     ],
     //
     // ============
@@ -60,7 +61,8 @@ exports.config = {
         "appium:platformVersion": "11.0",
         "appium:deviceName": "TestDevice", // or "iPhone Simulator"
         "appium:automationName": "UIAutomator2", // or "XCUITest"
-        "appium:app": path.join(process.cwd(),"app/android/ApiDemos-debug.apk")
+        "appium:app": path.join(process.cwd(),"app/android/ColorNote Notepad.apk"),
+        "appium:autoGrantPermissions": true
       },
     ],
     //
