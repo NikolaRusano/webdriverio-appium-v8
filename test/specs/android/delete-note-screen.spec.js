@@ -1,12 +1,23 @@
-const EditNoteScreen = require("../../screenobjects/android/edit-note.screen");
+//const EditNoteScreen = require("../../screenobjects/android/edit-note.screen");
+import EditNoteScreen from '../../screenobjects/android/edit-note.screen';
+import { before } from 'mocha';
 
 describe('Delete Note', () => {
-  it('Delete a note & check the note in trash can', async () => {
+    before(function() {
+        return new Promise(function(resolve) {
+          setTimeout(resolve, 5000); // Пауза в 5 секунд перед запуском тестов
+        });
+      });
+
+
+
+  before(async () => {
     await EditNoteScreen.skipTutorial();
     await EditNoteScreen.addAndSaveNote("TV shows", "Friends\nBreakingBad\nPeakyBlinders");
-
     await driver.back();
+  });
 
+  it('Delete a note & check the note in trash can', async () => {
     const note = await EditNoteScreen.firstNote.getText();
 
     // click on the note

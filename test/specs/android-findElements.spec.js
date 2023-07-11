@@ -6,6 +6,8 @@ describe('Android Elements Tests', () => {
     // click on element
     await appOption.click();
 
+    
+
     // assertion
     const actionBar = await $('~Action Bar');
     await expect(actionBar).toBeExisting();

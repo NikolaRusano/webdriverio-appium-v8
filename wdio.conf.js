@@ -63,6 +63,8 @@ exports.config = {
         "appium:automationName": "UIAutomator2", // or "XCUITest"
         "appium:app": path.join(process.cwd(),"app/android/ColorNote Notepad.apk"),
         "appium:autoGrantPermissions": true
+        //"appium:appiumCommandTimeout":30000,
+         //"appium:newCommandTimeout":30000
       },
     ],
     //
