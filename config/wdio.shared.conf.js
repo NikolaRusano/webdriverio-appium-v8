@@ -1,13 +1,13 @@
-const path = require('path');
+
 exports.config = {
     //
     // ====================
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
-    runner: 'local',
+    //runner: 'local',
     
-    port: 4723,
+    //port: 4723,
     //
     // ==================
     // Specify Test Files
@@ -24,10 +24,6 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
-    specs: [
-        // ToDo: define location for spec files here
-        './test/specs/android/delete-note-screen*.js'
-    ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -55,18 +51,6 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on an Android Emulator
-        "appium:platformName": "Android", // or "iOS"
-        "appium:platformVersion": "11.0",
-        "appium:deviceName": "TestDevice", // or "iPhone Simulator"
-        "appium:automationName": "UIAutomator2", // or "XCUITest"
-        "appium:app": path.join(process.cwd(),"app/android/ColorNote Notepad.apk"),
-        "appium:autoGrantPermissions": true
-        //"appium:appiumCommandTimeout":30000,
-         //"appium:newCommandTimeout":30000
-      },
-    ],
     //
     // ===================
     // Test Configurations
@@ -98,7 +82,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: '',
+    baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
