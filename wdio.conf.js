@@ -1,5 +1,62 @@
-const path = require("path");
+const path = require('path');
+
+
+/*const conf = {
+  reportPortalClientConfig: {
+    token: 'c03c00c7-0e1e-4ced-966a-acedada8cbf3',
+    endpoint: 'https://rp.fozzy.lan/api/v1',
+    launch: 'm.rusanov_TEST_EXAMPLE',
+    project: 'foraandroid',
+    attributes: [{ key: "Fora", value: "admin" }],
+    // ... other configurations
+  },
+  // ... other configurations
+};*/
+
+
+const commonCapabilities = {
+"appium:platformName": "Android", // or "iOS"
+"appium:platformVersion": "11.0",
+"appium:deviceName": "TestDevice", // or "iPhone Simulator"
+"appium:automationName": "UIAutomator2", // or "XCUITest"
+"appium:app": path.join(process.cwd(),"app/android/ForaMobileAndroid-1.36.3-google-mtest-fora.apk"),
+"appium:appPackage": "ua.fora.android.mtest",
+//"appium:appActivity": "ua.fora.android.ui.activity.WelcomeActivity",
+//"appium:language": "uk",
+//"appium:locale": "uk",
+"appium:unicodeKeyboard": true,
+"appium:enableVNC": true,
+"appium:noReset": true,
+"appium:newCommandTimeout": 120,
+"appium:autoGrantPermissions": true,
+"appium:autoAcceptAlerts": true,
+//"appium:autoDissmissAlerts": true,
+"appium:nativeWebScreenshot": true,
+"appium:gpsEnabled": true,
+//"appium:appiumCommandTimeout":30000,
+//"appium:newCommandTimeout":30000
+}
+
 exports.config = {
+
+
+
+  // beforeSession: function (config, capabilities, specs) {
+  //   // Add a wait using a promise
+  //   return new Promise((resolve) => {
+  //     setTimeout(resolve, 5000); // Wait for 100 seconds
+  //   });
+  // },
+
+  // beforeTest: function (test, context) {
+  //   // Add a wait using a promise
+  //   return new Promise((resolve) => {
+  //     setTimeout(resolve, 15000); // Wait for 10 seconds
+  //   });
+  // },
+
+
+  // ... other configurations
   //
   // ====================
   // Runner Configuration
@@ -26,11 +83,12 @@ exports.config = {
   //
   specs: [
     // ToDo: define location for spec files here
-    "./test/specs/android/sample.js",
+    //"./test/specs/android/login.js"
+    "./test/specs/android/authorization_tests_pckg/authorization_splash_tests.js"
   ],
   // Patterns to exclude.
   exclude: [
-    // 'path/to/excluded/files'
+    
   ],
   //
   // ============
@@ -54,31 +112,53 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: [
-    {
-      // capabilities for local Appium web tests on an Android Emulator
-      "appium:platformName": "Android", // or "iOS"
-      "appium:platformVersion": "11.0",
-      "appium:deviceName": "TestDevice", // or "iPhone Simulator"
-      "appium:automationName": "UIAutomator2", // or "XCUITest"
-      "appium:app": path.join(process.cwd(),"app/android/ForaMobileAndroid-1.34.0-google-mtest-fora.apk"),
-      "appium:appPackage": "ua.fora.android.mtest",
-      "appium:appActivity": "ua.fora.android.ui.activity.WelcomeActivity",
-      //"appium:language": "uk",
-      //"appium:locale": "uk",
-      "appium:unicodeKeyboard": true,
-      "appium:enableVNC": true,
-      "appium:noReset": true,
-      "appium:newCommandTimeout": 120,
-      "appium:autoGrantPermissions": true,
-      "appium:autoAcceptAlerts": true,
-      //"appium:autoDissmissAlerts": true,
-      "appium:nativeWebScreenshot": true,
-      "appium:gpsEnabled": true,
-      //"appium:appiumCommandTimeout":30000,
-      //"appium:newCommandTimeout":30000
-    },
-  ],
+
+
+  capabilities: [commonCapabilities],
+
+  beforeSession: function (config, capabilities, specs) {
+    // Get the current folder path
+    const currentFilePath = specs && specs.length ? specs[0] : '';
+
+  // Check if the current file is located in the specific test folder that requires different capabilities
+  if (currentFilePath.includes('/test/specs/android/authorization_tests_pckg/')) {
+    // Set specific capabilities for this folder
+    capabilities['appium:appActivity'] = 'ua.fora.android.ui.activity.SplashActivity';
+  } else {
+    // Set common capabilities for all other folders
+    capabilities['appium:appActivity'] = 'ua.fora.android.ui.activity.WelcomeActivity';
+  }
+
+    // You can make other checks and set additional capabilities if needed.
+
+    // No need to return anything, as the capabilities are updated by reference.
+  },
+  
+  // capabilities: [
+  //   {
+  //     // capabilities for local Appium web tests on an Android Emulator
+  //     "appium:platformName": "Android", // or "iOS"
+  //     "appium:platformVersion": "11.0",
+  //     "appium:deviceName": "TestDevice", // or "iPhone Simulator"
+  //     "appium:automationName": "UIAutomator2", // or "XCUITest"
+  //     "appium:app": path.join(process.cwd(),"app/android/ForaMobileAndroid-1.34.0_1-google-mtest-fora.apk"),
+  //     "appium:appPackage": "ua.fora.android.mtest",
+  //     "appium:appActivity": "ua.fora.android.ui.activity.WelcomeActivity",
+  //     //"appium:language": "uk",
+  //     //"appium:locale": "uk",
+  //     "appium:unicodeKeyboard": true,
+  //     "appium:enableVNC": true,
+  //     "appium:noReset": true,
+  //     "appium:newCommandTimeout": 120,
+  //     "appium:autoGrantPermissions": true,
+  //     "appium:autoAcceptAlerts": true,
+  //     //"appium:autoDissmissAlerts": true,
+  //     "appium:nativeWebScreenshot": true,
+  //     "appium:gpsEnabled": true,
+  //     //"appium:appiumCommandTimeout":30000,
+  //     //"appium:newCommandTimeout":30000
+  //   },
+  // ],
   //
   // ===================
   // Test Configurations
@@ -155,7 +235,7 @@ exports.config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
-    timeout: 60000,
+    timeout: 60000 ,
   },
   //
   // =====

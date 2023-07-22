@@ -3,7 +3,7 @@
         "types": [
             "node",
             "@wdio/globals/types",
-            "webdriverio/async",
+            //"webdriverio/async",
             "@wdio/mocha-framework"
         ],
         "module": "commonjs"

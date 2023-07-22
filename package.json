@@ -12,11 +12,12 @@
     "@wdio/spec-reporter": "^8.11.2",
     "appium": "^2.0.0-rc.5",
     "appium-uiautomator2-driver": "^1.43.0",
+    "chai": "^4.3.7",
     "eslint": "^8.44.0",
     "eslint-plugin-wdio": "^8.8.7"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "npx wdio wdio.conf.js"
   },
   "dependencies": {
     "ts-node": "^10.9.1",

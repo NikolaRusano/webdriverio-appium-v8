@@ -1,223 +1,188 @@
-import {mPhone, otp} from './test/loginconstansts/logincontstantsfile.js';
+import { mPhone, otp } from "../../loginconstansts/logincontstantsfile";
+import winston from "winston";
 
-class Authorization{
-    get latestUpdateInstallBtn(){
-        return $('//*[@resource-id="android:id/button1"]');
-    }
-    get latestUpdateCancelBtn(){
-        return $('//*[@resource-id="android:id/button2"]');
-    }
-    get gmailStartSkipBtn(){
-        return $('//*[@resource-id="com.google.android.gm:id/welcome_tour_skip"]');
-    }
-    get gmailStartInfoMSG(){
-        return $('//*[@resource-id="android:id/message"]');
-    }
-    get settingsAllowCheckBox(){
-        return $('//*[@resource-id="android:id/switch_widget"]');
-    }
-    get backFromSettingsMenuBtn(){
-        return $('//android.widget.ImageButton[@content-desc="Back"]');
-    }
-    get allowHMSNotificationMSG(){
-        return $('//*[@resource-id="com.android.permissioncontroller:id/permission_message"]');
-    }
-    get allowHMSNotificationAllowBtn(){
-        return $('//*[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]');
-    }
-    get allowHMSNotificationDenyBtn(){
-        return $('//*[@resource-id="com.android.permissioncontroller:id/permission_deny_button"]');
-    }
-    get recapchaAnchorCheckBox(){
-        return $('//*[@resource-id="recaptcha-anchor"]');
-    }
-    get mPhomeInputField(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/edit_phone"]');
-    }
-    get otpCodeField(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/edit_code"]');
-    }
-    get nextBtnOtpCodePg(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/button_ok"]');
-    }
-    get skipAuthPageOwnCount(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/tv_skip"]');
-    }
-    get checkboc18Years(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/check_private"]');
-    }
-    get finishAuthOKBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/button_ok"]');
-    }
-    get finishCloseMerryCristmasImage(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/buttonClose"]');
-    }
-    get nextBtnAfterAuth(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/action_menu"]');
-    }
-    get authIncorrectCodeBig(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_confirmation_otp"]');
-    }
-    get authIncorrectCodeFullMsg(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_check_again"]');
-    }
-    get authIncorrectMsgAfter3Input(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/snackbar_text"]');
-    }
-    get authTopText(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/landing_txt_title"]');
-    }
-    get authContentText(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/landing_txt_hint"]');
-    }
-    get authFirstScreensNextBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/tv_main"]');
-    }
-    get authPageCardNumbInput(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_info_number_vr"]');
-    }
-    get authCardNumbInputField(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/edit_card"]');
-    }
-    get authCardNumbInputFieldTextInfo(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_info_card"]');
-    }
-    get authNoCardInfiLink(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_no_card"]');
-    }
-    get authPhoneInputFieldError(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/textinput_error"]');
-    }
-    get authPushMsgError(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/snackbar_text"]');
-    }
-    get authSendCodeAgainLinkBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/button_send_again"]');
-    }
-    get authRecptcha(){
-        return $('//*[@resource-id="recaptcha-anchor"]');
-    }
-    get electroCheckBannerWrapper(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/newFeatureWrapper"]');
-    }
-    get electroCheckBanneruaCloseBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/ivFeatureClose"]');
-    }
+const logger = winston.createLogger({
+  level: "info", // or any other log level you prefer
+  format: winston.format.simple(), // or any other log format you prefer
+  transports: [
+    new winston.transports.Console(), // logs to the console
+    // Add more transports if you want to log to a file or other destinations
+  ],
+});
 
-        //AuthorizationForaClubCard
+class Authorization {
+  //Splash Tests Elements
 
-    get authForaCardTitleText(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_info_number_vr"]');
-    }
-    get authForaCardInputNumField(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/edit_card"]');
-    }
-    get authForaCardNoCardBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_no_card"]');
-    }
-    get authForaCardScanCardCodeBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/button_scanner"]');
-    }
-    get authForaCardInfoUnderCardField(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/text_info_card"]');
-    }
-    get bottomBarNavigationLineMenu(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/action_menu"]');
-    }
+  get skipAuthPageOwnCount() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/tv_skip"]');
+  }
 
-    //MainPAge
+  get authFirstScreensNextBtn() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/tv_main"]');
+  }
 
-    get bottomBarNavigationLineMain(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/action_main"]');
+  get authTopText() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/landing_txt_title"]');
+  }
+
+  get authContentText() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/landing_txt_hint"]');
+  }
+
+  //Welcome Authorization Page
+  get mPhomeInputField() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/edit_phone"]');
+  }
+
+  get checkboc18Years() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/check_private"]');
+  }
+
+  get finishAuthOKBtn() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/button_ok"]');
+  }
+
+  get authForaCardInputNumField() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/edit_card"]');
+  }
+
+  get bottomBarMainBtn() {
+    return $('//*[@resource-id="ua.fora.android.mtest:id/action_main"]');
+  }
+
+  async waitUntilElementDisplayed(element, timeout) {
+    await element.waitForDisplayed({
+      timeout,
+      timeoutMsg: `Expected ${element.selector} to be displayed within ${timeout}ms`,
+    });
+  }
+
+  async waitUntilElementClickable(element, timeout) {
+    await element.waitUntilElementClickable({
+      timeout,
+      timeoutMsg: `Expected ${element.selector} to be clickable within ${timeout}ms`,
+    });
+  }
+
+  async sendKeysAndroidElementOtpCode(otpCode) {
+    for (let i = 0; i < otpCode.length; i++) {
+      const digit = otpCode[i];
+      const keyCode = this.getKeyCodeForDigit(digit);
+      await driver.pressKeyCode(keyCode);
+      driver.pause(2000);
     }
-    get bottomBarNavigationLineDelivery(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/action_ecomm"]');
+  }
+
+  getKeyCodeForDigit(digit) {
+    switch (digit) {
+      case "0":
+        return 7; // KEYCODE_0
+      case "1":
+        return 8; // KEYCODE_1
+      case "2":
+        return 9; // KEYCODE_2
+      case "3":
+        return 10; // KEYCODE_3
+      case "4":
+        return 11; // KEYCODE_4
+      case "5":
+        return 12; // KEYCODE_5
+      case "6":
+        return 13; // KEYCODE_6
+      case "7":
+        return 14; // KEYCODE_7
+      case "8":
+        return 15; // KEYCODE_8
+      case "9":
+        return 16; // KEYCODE_9
+      default:
+        throw new Error(`Invalid digit: ${digit}`);
     }
-    get bottomBarNavigationLineHistory(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/action_calendar"]');
+  }
+
+  async tapAndroidElement(element) {
+    await element.click();
+  }
+
+  async sendAndroidElementKeys(element, textInput) {
+    await element.setValue(textInput);
+  }
+
+  async isElementPresent(element) {
+    try {
+      const isDisplayed = await element.isDisplayed();
+      console.log("isDisplayed:", isDisplayed); // Log the actual value
+      logger.info("isDisplayed:", isDisplayed); // Log the actual value
+      return isDisplayed;
+    } catch (error) {
+      console.error("Error while checking element visibility:", error);
+      logger.info("Error while checking element visibility:");
+      return false;
     }
-    get MainEditStoreBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/change_address_img"]');
+  }
+
+  /*async swipeScreenWithCoordinates(driver, startX, startY, endX, endY, duration = 1000) {
+  // Создаем новое TouchAction
+  const action = new TouchAction(driver);
+
+  // Выполняем свайп, указывая стартовые и конечные координаты
+  await action.press({ x: startX, y: startY }).wait(duration).moveTo({ x: endX, y: endY }).release().perform();
+}*/
+
+  async scrollElementIntoViewToLeft(element, counter) {
+    for (let i = 0; i < counter; i++) {
+      await driver.executeScript("mobile: scroll", {
+        direction: "left",
+        element: element.elementId,
+      });
+      await driver.pause(1000);
     }
-    get MainEditStoreDeleteAddressBtn(){
-        return $('//*[@resource-id="ua.fora.android.mtest:id/iv_delete_filial"]');
+  }
+
+  async scrollElementIntoViewToLeftWithNoElements(counter) {
+    for (let i = 0; i < counter; i++) {
+      await $(
+        "android=new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollForward()"
+      );
+      await driver.pause(1000);
     }
+  }
 
-
-
-    async readAndroidElement(element) {
-        await element.toBeDisplayed();
-        const elementText = await element.getText();
-        return elementText;
-      }
-
-    async tapAndroidElement(element) {
-        await element.textOption.click();
+  async scrollElementIntoViewToRight(element, counter) {
+    for (let i = 0; i < counter; i++) {
+      await driver.executeScript("mobile: scroll", {
+        direction: "right",
+        element: element.elementId,
+      });
+      await driver.pause(1000);
     }
+  }
 
-      async sendKeysAndroidElementOtpCode(otpCode){
-        for(let i =0; i < otp.length; i++) {
-            switch(otpCode[i]){
-                case 0:
-                    await driver.pressKey('0');
-                    break;
-                case 1:
-                    await driver.pressKey('1');
-                    break;
-                case 2:
-                    await driver.pressKey('2');
-                    break;
-                case 3:
-                    await driver.pressKey('3');
-                    break;
-                case 4:
-                    await driver.pressKey('4');
-                    break;
-                case 5:
-                    await driver.pressKey('5');
-                    break;
-                case 6:
-                    await driver.pressKey('6');
-                    break;
-                case 7:
-                    await driver.pressKey('7');
-                    break;
-                case 8:
-                    await driver.pressKey('8');
-                    break;
-                case 9:
-                    await driver.pressKey('9');
-                    break;
-            }
-           
-        }
-      }
+  async scrollElementIntoViewToRightWithNoElements(counter) {
+    for (let i = 0; i < counter; i++) {
+      await $(
+        "android=new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollBackward()"
+      );
+      await driver.pause(1000);
+    }
+  }
 
-      async isElementPresent(element) {
-        try {
-          await element.isDisplayed(); // Assuming this is a valid method in your JavaScript framework/library
-          return true;
-        } catch (error) {
-          return false;
-        }
-      }
-      
+  async authBeforeTestWithTestNumbAndOtp40WithCardCheck() {
+    await this.tapAndroidElement(this.mPhomeInputField);
+    await this.sendAndroidElementKeys(this.mPhomeInputField, mPhone);
 
-      async authBeforeTestWithTestNumbAndOtp40WithCardCheck (){
-        driver.pause(15000);
-        await mPhomeInputField.toBeDisplayed;
-        //екран вводу телефону
-        tapAndroidElement(mPhomeInputField);
-        await mPhomeInputField.noteHeading.addValue(mPhone);
-        await checkboc18Years.textOption.click();
-        await finishAuthOKBtn.textOption.click();
-//екран вводу отп
-        await finishAuthOKBtn.textOption.click();
-        await sendKeysAndroidElementOtpCode(otpCode);
-        await nextBtnOtpCodePg.textOption.click();
-        await isElementPresent(authForaCardInputNumField);
+    await this.tapAndroidElement(this.checkboc18Years);
+    await this.tapAndroidElement(this.finishAuthOKBtn);
+    await driver.pause(7000);
 
-        tapAndroidElement(finishAuthOKBtn);
-      }
+    await this.sendKeysAndroidElementOtpCode(otp);
+    await this.tapAndroidElement(this.finishAuthOKBtn);
+    await driver.pause(9000);
 
+    await this.isElementPresent(this.authForaCardInputNumField);
+    await this.waitUntilElementDisplayed(this.finishAuthOKBtn);
+    await this.tapAndroidElement(this.finishAuthOKBtn);
+  }
 }
+
+module.exports = new Authorization();
