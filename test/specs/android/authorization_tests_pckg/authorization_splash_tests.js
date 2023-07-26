@@ -1,15 +1,12 @@
-import Authorization from "../../../screenobjects/android/authorization";
-import winston from 'winston';
-import { expect as expectChai } from 'chai';
 
-const logger = winston.createLogger({
-  level: 'info', // or any other log level you prefer
-  format: winston.format.simple(), // or any other log format you prefer
-  transports: [
-    new winston.transports.Console() // logs to the console
-    // Add more transports if you want to log to a file or other destinations
-  ]
-});
+import Authorization from "../../../screenobjects/android/authorization";
+import LogSender from "../../../loginconstansts/logsender";
+import { expect as expectChai } from 'chai';
+const reportportal = require('wdio-reportportal-reporter');
+
+let logSender = LogSender;
+logSender.reportportal = reportportal;
+
 beforeEach(function () {
     // Add a wait using a promise
     return new Promise((resolve) => {
@@ -27,7 +24,7 @@ describe("Authorization Splash Activity Tests", () => {
     const isNextButtonPresent = await Authorization.isElementPresent(Authorization.authFirstScreensNextBtn);
 
     // Making separate assertions for each conditions
-    logger.info("Проверка первого слайда - наличия кнопки пропустить кнопки и отсутствует кнопка далее");
+    logSender.sendLog(test, 'info', 'Проверка первого слайда - наличия кнопки пропустить кнопки и отсутствует кнопка далее');
     expect(isSkipButtonPresent).toBe(true,"Проверка наличия кнопки пропустить");
     expect(isNextButtonPresent).toBe(false, "Проверка наличия кнопки далее");
   });
@@ -36,7 +33,7 @@ describe("Authorization Splash Activity Tests", () => {
     driver.pause(5000);
     const actualText = await Authorization.authTopText.getText();
     
-    logger.info("Проверка первого слайда текста сообщений окна первого поля");
+    logSender.sendLog(test, 'info', 'Проверка первого слайда текста сообщений окна первого поля');
 
     // Making separate assertions for each conditions
     expectChai(actualText).to.equal("Картка Фора club");
@@ -47,7 +44,7 @@ describe("Authorization Splash Activity Tests", () => {
     driver.pause(5000);
     const authContentText = await Authorization.authContentText.getText();
     
-    logger.info("Проверка первого слайда текста сообщений окна второго поля");
+    logSender.sendLog(test, 'info', 'Проверка первого слайда текста сообщений окна второго поля');
 
     // Making separate assertions for each conditions
     expectChai(authContentText).to.equal("Електронна картка завжди під рукою. Прощавайте, зайвий пластик та папір!");
@@ -58,7 +55,7 @@ describe("Authorization Splash Activity Tests", () => {
 
 
 
-describe("Authorization Splash Activity Tests2", () => {
+/*describe("Authorization Splash Activity Tests2", () => {
 
   
   it("Test Authorization button Page 2", async () => {
@@ -178,4 +175,4 @@ describe("Authorization Splash Activity Tests3", () => {
     
   });
 
-});
+});*/

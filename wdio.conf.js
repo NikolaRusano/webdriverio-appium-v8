@@ -1,9 +1,15 @@
 const path = require('path');
+const reportportal = require('wdio-reportportal-reporter');
+const RpService = require('wdio-reportportal-service');
 
 
-/*const conf = {
+
+
+
+
+const conf = {
   reportPortalClientConfig: {
-    token: 'c03c00c7-0e1e-4ced-966a-acedada8cbf3',
+    token: 'dafdce13-88b0-4403-ad2c-96b38e48284c',
     endpoint: 'https://rp.fozzy.lan/api/v1',
     launch: 'm.rusanov_TEST_EXAMPLE',
     project: 'foraandroid',
@@ -11,7 +17,9 @@ const path = require('path');
     // ... other configurations
   },
   // ... other configurations
-};*/
+};
+
+
 
 
 const commonCapabilities = {
@@ -35,11 +43,16 @@ const commonCapabilities = {
 "appium:gpsEnabled": true,
 //"appium:appiumCommandTimeout":30000,
 //"appium:newCommandTimeout":30000
+
+
+//agent: new https.Agent({ rejectUnauthorized: false }),
 }
 
 exports.config = {
-
-
+  before: function () {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  },
+  
 
   // beforeSession: function (config, capabilities, specs) {
   //   // Add a wait using a promise
@@ -206,7 +219,7 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["appium"],
+  services: ["appium",[RpService, {}]],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -228,7 +241,7 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: ["spec",[reportportal, conf]],
 
   //
   // Options to be passed to Mocha.

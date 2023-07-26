@@ -1,14 +1,6 @@
 import { mPhone, otp } from "../../loginconstansts/logincontstantsfile";
-import winston from "winston";
+import { logger } from '../../../wdio.conf';
 
-const logger = winston.createLogger({
-  level: "info", // or any other log level you prefer
-  format: winston.format.simple(), // or any other log format you prefer
-  transports: [
-    new winston.transports.Console(), // logs to the console
-    // Add more transports if you want to log to a file or other destinations
-  ],
-});
 
 class Authorization {
   //Splash Tests Elements
